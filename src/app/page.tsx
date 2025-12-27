@@ -97,7 +97,7 @@ export default async function Home() {
             color: 'var(--color-cream-800)',
             textShadow: '1px 1px 0 rgba(255, 255, 255, 0.3)'
           }}>
-            Professor, Artist, Mother, Entrepreneur
+            Mother, Artist, Professor, Entrepreneur
           </p>
           <p className="mt-6 text-base max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--color-vintage-teal-800)' }}>
             A cozy space where academia meets creativity, and professional pursuits blend with personal passions.
@@ -161,12 +161,12 @@ export default async function Home() {
                 />
 
                 {/* Ornate Corner Decorations */}
-                <div className="absolute top-8 left-0 w-3 h-3 border-l-2 border-t-2" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
-                <div className="absolute top-8 right-0 w-3 h-3 border-r-2 border-t-2" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
-                <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
-                <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
+                <div className="absolute top-8 left-0 w-4 h-4 border-l-2 border-t-2 rounded-tl-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
+                <div className="absolute top-8 right-0 w-4 h-4 border-r-2 border-t-2 rounded-tr-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
+                <div className="absolute bottom-2 left-0 w-4 h-4 border-l-2 border-b-2 rounded-bl-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
+                <div className="absolute bottom-2 right-0 w-4 h-4 border-r-2 border-b-2 rounded-br-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
 
-                <div className="p-6 pt-12 flex items-start space-x-4">
+                <div className="p-6 pt-12 pb-8 flex items-start space-x-4">
                   {/* Vintage Icon Circle */}
                   <div
                     className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
@@ -201,14 +201,6 @@ export default async function Home() {
                     →
                   </span>
                 </div>
-
-                {/* Bottom Decorative Border */}
-                <div
-                  className="h-2"
-                  style={{
-                    background: 'linear-gradient(90deg, var(--color-vintage-teal-400) 0%, var(--color-vintage-teal-500) 50%, var(--color-vintage-teal-400) 100%)'
-                  }}
-                />
               </Link>
             );
           })}
