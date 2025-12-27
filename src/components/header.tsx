@@ -11,16 +11,26 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   const isActive = pathname === href;
 
   return (
-    <Link 
-      href={href} 
-      className={`group relative py-1 transition-colors ${isActive ? 'text-stone-900' : 'text-stone-600 hover:text-stone-900'}`}
+    <Link
+      href={href}
+      className="group relative py-1 transition-colors"
+      style={{
+        color: isActive ? 'var(--color-vintage-teal-700)' : 'var(--color-vintage-teal-500)'
+      }}
     >
       {children}
-      <span 
-        className={`absolute left-0 bottom-0 h-0.5 bg-stone-800 transition-all duration-300 ease-in-out
-          ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}
-        `}
+      <span
+        className="absolute left-0 bottom-0 h-0.5 transition-all duration-300 ease-in-out"
+        style={{
+          backgroundColor: 'var(--color-vintage-teal-600)',
+          width: isActive ? '100%' : '0'
+        }}
       />
+      <style jsx>{`
+        .group:hover span {
+          width: 100%;
+        }
+      `}</style>
     </Link>
   );
 };
@@ -31,32 +41,51 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 border-b border-stone-200/60 transition-all duration-300">
-        <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link 
-            href="/" 
-            className="font-serif text-2xl md:text-3xl font-bold text-stone-800 tracking-tight hover:opacity-80 transition-opacity"
+      <header className="sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300" style={{
+        backgroundColor: 'rgba(253, 252, 250, 0.9)',
+        borderBottom: '2px solid var(--color-vintage-teal-300)'
+      }}>
+        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link
+            href="/"
+            className="hover:opacity-80 transition-opacity"
           >
-            Mom's Corner
+            <div className="font-serif text-2xl md:text-3xl font-bold tracking-tight" style={{ color: 'var(--color-vintage-teal-700)' }}>
+              Zeina's Corner
+            </div>
+            <div className="text-xs md:text-sm italic font-light tracking-wide mt-1" style={{ color: 'var(--color-cream-700)' }}>
+              Professor, Artist, Mother, Entrepreneur
+            </div>
           </Link>
           
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-8 font-medium text-sm tracking-wide uppercase">
+          <nav className="hidden lg:flex items-center space-x-6 font-medium text-xs tracking-wide uppercase">
             <NavLink href="/">Home</NavLink>
+            <NavLink href="/books">Books</NavLink>
+            <NavLink href="/papers">Papers</NavLink>
+            <NavLink href="/courses">Courses</NavLink>
+            <NavLink href="/hobbies">Hobbies</NavLink>
             <NavLink href="/about">About</NavLink>
             <NavLink href="/contact">Contact</NavLink>
-            <button 
+            <button
               onClick={() => setAuthOpen(true)}
-              className="flex items-center space-x-2 bg-stone-900 text-white px-4 py-2 rounded-full hover:bg-stone-800 transition-transform active:scale-95 ml-4"
+              className="flex items-center space-x-2 px-3 py-2 rounded-full transition-transform active:scale-95 ml-2"
+              style={{
+                backgroundColor: 'var(--color-vintage-teal-600)',
+                color: 'var(--color-cream-50)'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-700)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-600)'}
             >
-                <UserCircle size={18} />
+                <UserCircle size={16} />
                 <span>Sign In</span>
             </button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-stone-600 p-2"
+          <button
+            className="lg:hidden p-2"
+            style={{ color: 'var(--color-vintage-teal-600)' }}
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
           >
             <Menu size={24} />
@@ -65,13 +94,21 @@ export default function Header() {
 
         {/* Mobile Nav Dropdown */}
         {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-stone-200 shadow-lg py-4 px-6 flex flex-col space-y-4 animate-in slide-in-from-top-2 duration-200">
-                <Link href="/" className="text-stone-700 font-medium py-2 border-b border-stone-100" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-                <Link href="/about" className="text-stone-700 font-medium py-2 border-b border-stone-100" onClick={() => setMobileMenuOpen(false)}>About</Link>
-                <Link href="/contact" className="text-stone-700 font-medium py-2 border-b border-stone-100" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-                <button 
+            <div className="lg:hidden absolute top-full left-0 w-full shadow-lg py-4 px-6 flex flex-col space-y-4 animate-in slide-in-from-top-2 duration-200" style={{
+              backgroundColor: 'var(--color-cream-100)',
+              borderBottom: '1px solid var(--color-cream-300)'
+            }}>
+                <Link href="/" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Home</Link>
+                <Link href="/books" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Books</Link>
+                <Link href="/papers" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Conferences/Papers</Link>
+                <Link href="/courses" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Courses I Teach</Link>
+                <Link href="/hobbies" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Home Economics & Hobbies</Link>
+                <Link href="/about" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>About</Link>
+                <Link href="/contact" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+                <button
                     onClick={() => { setAuthOpen(true); setMobileMenuOpen(false); }}
-                    className="text-left text-stone-900 font-bold flex items-center space-x-2 py-2"
+                    className="text-left font-bold flex items-center space-x-2 py-2"
+                    style={{ color: 'var(--color-vintage-teal-800)' }}
                 >
                     <UserCircle size={18} />
                     <span>Sign In / Register</span>

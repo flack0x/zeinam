@@ -7,9 +7,9 @@ import { redirect } from 'next/navigation'
 
 export async function login(prevState: any, formData: FormData) {
   const password = formData.get('password') as string
-  // Default password if env not set is 'mama'
-  const validPassword = process.env.ADMIN_PASSWORD || 'mama'
-  
+  // Default password if env not set is 'zeina'
+  const validPassword = process.env.ADMIN_PASSWORD || 'zeina'
+
   if (password === validPassword) {
     const cookieStore = await cookies()
     cookieStore.set('auth', 'true', { httpOnly: true, path: '/' })

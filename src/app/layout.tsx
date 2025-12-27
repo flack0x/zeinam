@@ -9,7 +9,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 const lato = Lato({ weight: ["400", "700"], subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Mom's Corner",
+  title: "Zeina's Corner",
   description: "A cozy place for stories and thoughts.",
 };
 
@@ -24,8 +24,12 @@ export default function RootLayout({
         className={clsx(
           playfair.variable,
           lato.variable,
-          "font-sans antialiased bg-stone-50 text-stone-900 flex flex-col min-h-screen"
+          "font-sans antialiased flex flex-col min-h-screen"
         )}
+        style={{
+          backgroundColor: 'var(--color-cream-50)',
+          color: 'var(--color-vintage-teal-900)'
+        }}
       >
         <Header />
 
@@ -33,16 +37,19 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="w-full py-12 bg-white border-t border-stone-200 mt-auto">
+        <footer className="w-full py-12 mt-auto" style={{
+          backgroundColor: 'var(--color-cream-200)',
+          borderTop: '1px solid var(--color-cream-300)'
+        }}>
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h3 className="font-serif text-xl font-bold text-stone-800 mb-4">Mom's Corner</h3>
-            <div className="flex justify-center space-x-6 text-stone-500 text-sm mb-8">
-              <Link href="/" className="hover:text-stone-900">Home</Link>
-              <Link href="/about" className="hover:text-stone-900">About</Link>
-              <Link href="/contact" className="hover:text-stone-900">Contact</Link>
+            <h3 className="font-serif text-xl font-bold mb-4" style={{ color: 'var(--color-vintage-teal-800)' }}>Zeina's Corner</h3>
+            <div className="flex justify-center space-x-6 text-sm mb-8" style={{ color: 'var(--color-vintage-teal-600)' }}>
+              <Link href="/" className="hover:opacity-80 transition-opacity">Home</Link>
+              <Link href="/about" className="hover:opacity-80 transition-opacity">About</Link>
+              <Link href="/contact" className="hover:opacity-80 transition-opacity">Contact</Link>
             </div>
-            <p className="text-stone-400 text-xs">
-              © {new Date().getFullYear()} Mom's Corner. Made with love.
+            <p className="text-xs" style={{ color: 'var(--color-cream-600)' }}>
+              © {new Date().getFullYear()} Zeina's Corner. Made with love.
             </p>
           </div>
         </footer>

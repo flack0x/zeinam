@@ -18,13 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: 'Post Not Found' };
 
   return {
-    title: `${post.title} | Mom's Corner`,
+    title: `${post.title} | Zeina's Corner`,
     description: post.content.replace(/<[^>]+>/g, '').substring(0, 160), // First 160 chars of text
     openGraph: {
       title: post.title,
       description: post.content.replace(/<[^>]+>/g, '').substring(0, 160),
-      url: `https://your-mama-website.com/blog/${slug}`,
-      siteName: "Mom's Corner",
+      url: `https://your-zeina-website.com/blog/${slug}`,
+      siteName: "Zeina's Corner",
       images: post.imageUrl ? [{ url: post.imageUrl }] : [],
       type: 'article',
       publishedTime: post.createdAt.toISOString(),
@@ -51,9 +51,9 @@ export default async function BlogPost({ params }: Props) {
     dateModified: post.updatedAt.toISOString(),
     author: {
       '@type': 'Person',
-      name: 'Mom', // Can be customized
+      name: 'Zeina', // Can be customized
     },
-    image: post.imageUrl || 'https://your-mama-website.com/default-og.jpg',
+    image: post.imageUrl || 'https://your-zeina-website.com/default-og.jpg',
     description: post.content.replace(/<[^>]+>/g, '').substring(0, 160),
   };
 

@@ -10,7 +10,7 @@ export default async function AdminPage() {
   if (!isAuthenticated) {
     return (
         <div className="max-w-md mx-auto mt-12 border p-8 rounded-lg shadow-sm bg-white">
-            <h1 className="text-2xl font-serif font-bold mb-6 text-center">Mom's Login</h1>
+            <h1 className="text-2xl font-serif font-bold mb-6 text-center">Zeina's Login</h1>
             <LoginForm />
         </div>
     )
