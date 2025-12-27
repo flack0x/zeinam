@@ -14,19 +14,21 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link
       href={href}
-      className="group relative py-2 px-2 transition-all duration-300 ease-out"
+      className="relative inline-block py-2 px-1.5 transition-all duration-300 ease-out flex-shrink-0"
       style={{
         color: isActive ? 'var(--color-cream-50)' : isHovered ? 'var(--color-cream-100)' : 'var(--color-cream-200)',
         transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
         textShadow: isHovered ? '0 2px 4px rgba(0, 0, 0, 0.3)' : '0 1px 2px rgba(0, 0, 0, 0.1)',
-        fontWeight: isActive ? '700' : '600'
+        fontWeight: isActive ? '700' : '600',
+        textDecoration: 'none',
+        whiteSpace: 'nowrap'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {children}
       <span
-        className="absolute left-0 bottom-0 transition-all duration-300 ease-out"
+        className="absolute left-0 bottom-0 transition-all duration-300 ease-out pointer-events-none"
         style={{
           height: isHovered ? '3px' : '2px',
           backgroundColor: 'var(--color-cream-100)',
@@ -49,13 +51,13 @@ export default function Header() {
         borderBottom: '4px solid var(--color-vintage-teal-700)',
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
       }}>
-        <div className="max-w-4xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
           <Link
             href="/"
-            className="group transition-all duration-300"
+            className="group transition-all duration-300 flex-shrink-0"
           >
             {/* Sign-like container */}
-            <div className="inline-block px-6 py-3 rounded-lg relative" style={{
+            <div className="inline-block px-4 py-2 rounded-lg relative" style={{
               backgroundColor: 'var(--color-cream-100)',
               border: '3px solid var(--color-cream-400)',
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.5)',
@@ -65,22 +67,22 @@ export default function Header() {
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              <div className="font-serif text-xl md:text-2xl font-bold tracking-tight" style={{
+              <div className="font-serif text-lg lg:text-xl font-bold tracking-tight whitespace-nowrap" style={{
                 color: 'var(--color-vintage-teal-700)',
                 textShadow: '1px 1px 0 rgba(255, 255, 255, 0.5)'
               }}>
                 Zeina's Corner
               </div>
-              <div className="text-xs italic font-light tracking-wide mt-0.5 text-center" style={{
+              <div className="text-[0.65rem] italic font-light tracking-wide mt-0.5 text-center whitespace-nowrap" style={{
                 color: 'var(--color-cream-800)'
               }}>
                 Professor, Artist, Mother, Entrepreneur
               </div>
             </div>
           </Link>
-          
+
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-6 font-medium text-sm tracking-wide uppercase">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-5 font-medium text-xs tracking-wide uppercase flex-shrink-0">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/books">Books</NavLink>
             <NavLink href="/papers">Papers</NavLink>
@@ -90,15 +92,17 @@ export default function Header() {
             <NavLink href="/contact">Contact</NavLink>
             <button
               onClick={() => setAuthOpen(true)}
-              className="flex items-center gap-2.5 px-5 py-2.5 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-4 hover:-translate-y-0.5"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-2 flex-shrink-0"
               style={{
                 backgroundColor: 'var(--color-cream-100)',
                 color: 'var(--color-vintage-teal-700)',
-                fontSize: '0.875rem',
+                fontSize: '0.813rem',
                 fontWeight: '700',
                 letterSpacing: '0.025em',
                 border: '2px solid var(--color-cream-300)',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
+                transform: 'translateY(0)',
+                transition: 'all 0.3s ease-out'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'var(--color-cream-50)';
@@ -111,7 +115,7 @@ export default function Header() {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-                <UserCircle size={18} strokeWidth={2.5} />
+                <UserCircle size={16} strokeWidth={2.5} />
                 <span className="whitespace-nowrap">Sign In</span>
             </button>
           </nav>
