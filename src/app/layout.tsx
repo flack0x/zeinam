@@ -67,23 +67,44 @@ export default function RootLayout({
             </div>
 
             <div className="text-center mb-6">
-              {/* Logo sign in footer */}
-              <div className="inline-block px-6 py-2.5 rounded-lg mb-4" style={{
-                backgroundColor: 'var(--color-cream-100)',
-                border: '2px solid var(--color-cream-400)',
-                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.4)'
+              {/* Wooden Box/Plaque Logo */}
+              <div className="relative inline-block px-6 py-3 rounded mb-4" style={{
+                background: 'linear-gradient(135deg, #8B7355 0%, #A0826D 50%, #8B7355 100%)',
+                border: '3px solid #5D4E37',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.3)'
               }}>
-                <h3 className="font-serif text-xl font-bold" style={{
-                  color: 'var(--color-vintage-teal-700)',
-                  textShadow: '1px 1px 0 rgba(255, 255, 255, 0.4)'
+                {/* Wood grain texture overlay */}
+                <div className="absolute inset-0 rounded opacity-20 pointer-events-none" style={{
+                  backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)',
+                  mixBlendMode: 'multiply'
+                }}></div>
+
+                {/* Carved text */}
+                <h3 className="relative font-serif text-xl font-bold" style={{
+                  color: '#F5E6D3',
+                  textShadow: '0 2px 3px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(255, 255, 255, 0.3)',
+                  letterSpacing: '0.02em'
                 }}>
                   Zeina's Corner
                 </h3>
-                <p className="text-[0.65rem] italic font-light mt-0.5 opacity-75" style={{
-                  color: 'var(--color-cream-700)'
-                }}>
-                  Mother, Artist, Professor, Entrepreneur
-                </p>
+
+                {/* Brass corner tacks */}
+                <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full" style={{
+                  background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+                }}></div>
+                <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full" style={{
+                  background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+                }}></div>
+                <div className="absolute bottom-1 left-1 w-1.5 h-1.5 rounded-full" style={{
+                  background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+                }}></div>
+                <div className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full" style={{
+                  background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+                }}></div>
               </div>
 
               {/* Navigation links */}

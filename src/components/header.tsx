@@ -56,28 +56,49 @@ export default function Header() {
             href="/"
             className="group transition-all duration-300 flex-shrink-0"
           >
-            {/* Sign-like container */}
-            <div className="inline-block px-4 py-2 rounded-lg relative" style={{
-              backgroundColor: 'var(--color-cream-100)',
-              border: '2px solid var(--color-cream-400)',
-              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
+            {/* Wooden Box/Plaque Sign */}
+            <div className="relative inline-block px-6 py-3 rounded" style={{
+              background: 'linear-gradient(135deg, #8B7355 0%, #A0826D 50%, #8B7355 100%)',
+              border: '3px solid #5D4E37',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.3)',
               transform: 'translateY(0)',
               transition: 'transform 0.2s ease'
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              <div className="font-serif text-lg lg:text-xl font-bold tracking-tight whitespace-nowrap" style={{
-                color: 'var(--color-vintage-teal-700)',
-                textShadow: '1px 1px 0 rgba(255, 255, 255, 0.4)'
+              {/* Wood grain texture overlay */}
+              <div className="absolute inset-0 rounded opacity-20 pointer-events-none" style={{
+                backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)',
+                mixBlendMode: 'multiply'
+              }}></div>
+
+              {/* Carved/engraved text effect */}
+              <div className="relative font-serif text-xl lg:text-2xl font-bold tracking-tight whitespace-nowrap" style={{
+                color: '#F5E6D3',
+                textShadow: '0 2px 3px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(255, 255, 255, 0.3)',
+                letterSpacing: '0.02em'
               }}>
                 Zeina's Corner
               </div>
-              <div className="text-[0.65rem] italic font-light tracking-wide mt-0.5 text-center whitespace-nowrap opacity-75" style={{
-                color: 'var(--color-cream-700)'
-              }}>
-                Mother, Artist, Professor, Entrepreneur
-              </div>
+
+              {/* Decorative corner brass tacks */}
+              <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full" style={{
+                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              }}></div>
+              <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full" style={{
+                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              }}></div>
+              <div className="absolute bottom-1 left-1 w-1.5 h-1.5 rounded-full" style={{
+                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              }}></div>
+              <div className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full" style={{
+                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
+                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              }}></div>
             </div>
           </Link>
 
