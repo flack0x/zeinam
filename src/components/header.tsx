@@ -14,11 +14,12 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link
       href={href}
-      className="group relative py-2 px-1 transition-all duration-300 ease-out"
+      className="group relative py-2 px-2 transition-all duration-300 ease-out"
       style={{
-        color: isActive ? 'var(--color-vintage-teal-600)' : isHovered ? 'var(--color-vintage-teal-700)' : 'var(--color-vintage-teal-500)',
+        color: isActive ? 'var(--color-cream-50)' : isHovered ? 'var(--color-cream-100)' : 'var(--color-cream-200)',
         transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
-        textShadow: isHovered ? '0 1px 2px rgba(95, 158, 160, 0.2)' : 'none'
+        textShadow: isHovered ? '0 2px 4px rgba(0, 0, 0, 0.3)' : '0 1px 2px rgba(0, 0, 0, 0.1)',
+        fontWeight: isActive ? '700' : '600'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -28,9 +29,9 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
         className="absolute left-0 bottom-0 transition-all duration-300 ease-out"
         style={{
           height: isHovered ? '3px' : '2px',
-          backgroundColor: 'var(--color-vintage-teal-600)',
+          backgroundColor: 'var(--color-cream-100)',
           width: isActive ? '100%' : isHovered ? '100%' : '0',
-          boxShadow: isHovered ? '0 2px 4px rgba(95, 158, 160, 0.3)' : 'none'
+          boxShadow: isHovered ? '0 2px 4px rgba(255, 255, 255, 0.5)' : 'none'
         }}
       />
     </Link>
@@ -43,26 +44,43 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300" style={{
-        backgroundColor: 'rgba(245, 230, 211, 0.95)',
-        borderBottom: '3px solid var(--color-vintage-teal-400)',
-        boxShadow: '0 2px 8px rgba(95, 158, 160, 0.1)'
+      <header className="sticky top-0 z-50 w-full backdrop-blur-sm transition-all duration-300" style={{
+        backgroundColor: 'var(--color-vintage-teal-500)',
+        borderBottom: '4px solid var(--color-vintage-teal-700)',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
       }}>
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-6 py-3 flex items-center justify-between">
           <Link
             href="/"
-            className="hover:opacity-80 transition-opacity"
+            className="group transition-all duration-300"
           >
-            <div className="font-serif text-2xl md:text-3xl font-bold tracking-tight" style={{ color: 'var(--color-vintage-teal-600)' }}>
-              Zeina's Corner
-            </div>
-            <div className="text-xs md:text-sm italic font-light tracking-wide mt-1" style={{ color: 'var(--color-cream-800)' }}>
-              Professor, Artist, Mother, Entrepreneur
+            {/* Sign-like container */}
+            <div className="inline-block px-6 py-3 rounded-lg relative" style={{
+              backgroundColor: 'var(--color-cream-100)',
+              border: '3px solid var(--color-cream-400)',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.5)',
+              transform: 'translateY(0)',
+              transition: 'transform 0.2s ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+            >
+              <div className="font-serif text-xl md:text-2xl font-bold tracking-tight" style={{
+                color: 'var(--color-vintage-teal-700)',
+                textShadow: '1px 1px 0 rgba(255, 255, 255, 0.5)'
+              }}>
+                Zeina's Corner
+              </div>
+              <div className="text-xs italic font-light tracking-wide mt-0.5 text-center" style={{
+                color: 'var(--color-cream-800)'
+              }}>
+                Professor, Artist, Mother, Entrepreneur
+              </div>
             </div>
           </Link>
           
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-7 font-medium text-xs tracking-wide uppercase">
+          <nav className="hidden lg:flex items-center space-x-6 font-medium text-sm tracking-wide uppercase">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/books">Books</NavLink>
             <NavLink href="/papers">Papers</NavLink>
@@ -72,22 +90,25 @@ export default function Header() {
             <NavLink href="/contact">Contact</NavLink>
             <button
               onClick={() => setAuthOpen(true)}
-              className="flex items-center gap-2.5 px-5 py-2.5 rounded-full transition-all duration-300 ease-out active:scale-95 ml-4 hover:-translate-y-0.5"
+              className="flex items-center gap-2.5 px-5 py-2.5 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-4 hover:-translate-y-0.5"
               style={{
-                backgroundColor: 'var(--color-vintage-teal-600)',
-                color: 'var(--color-cream-50)',
-                fontSize: '0.813rem',
-                fontWeight: '600',
+                backgroundColor: 'var(--color-cream-100)',
+                color: 'var(--color-vintage-teal-700)',
+                fontSize: '0.875rem',
+                fontWeight: '700',
                 letterSpacing: '0.025em',
-                boxShadow: '0 2px 8px rgba(95, 158, 160, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                border: '2px solid var(--color-cream-300)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-700)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(95, 158, 160, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                e.currentTarget.style.backgroundColor = 'var(--color-cream-50)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-600)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(95, 158, 160, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                e.currentTarget.style.backgroundColor = 'var(--color-cream-100)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
+                e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
                 <UserCircle size={18} strokeWidth={2.5} />
@@ -97,9 +118,14 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
-            style={{ color: 'var(--color-vintage-teal-600)' }}
+            className="lg:hidden p-2 rounded-lg transition-all"
+            style={{
+              color: 'var(--color-cream-100)',
+              backgroundColor: 'rgba(245, 230, 211, 0.1)'
+            }}
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(245, 230, 211, 0.2)'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(245, 230, 211, 0.1)'}
           >
             <Menu size={24} />
           </button>
