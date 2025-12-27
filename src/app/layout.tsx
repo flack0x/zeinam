@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <Header />
 
-        <main className="flex-grow max-w-3xl mx-auto px-6 py-16 w-full animate-in fade-in duration-700">
+        <main className="flex-grow max-w-7xl mx-auto px-6 py-16 w-full animate-in fade-in duration-700">
           {children}
         </main>
 

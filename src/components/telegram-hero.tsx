@@ -7,17 +7,24 @@ export default async function TelegramHero() {
 
   if (!posts || posts.length === 0) {
       return (
-        <section className="mb-20 bg-gradient-to-br from-stone-50 to-stone-100/50 rounded-3xl p-12 border border-stone-200/50 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-sm mb-4">
-              <Send size={24} className="text-stone-400" />
+        <section className="mb-20 rounded-2xl p-12 text-center" style={{
+          background: 'linear-gradient(135deg, var(--color-vintage-teal-50) 0%, var(--color-cream-100) 100%)',
+          border: '3px solid var(--color-vintage-teal-300)'
+        }}>
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4" style={{
+              backgroundColor: 'var(--color-cream-50)',
+              boxShadow: '0 2px 8px rgba(95, 158, 160, 0.2)'
+            }}>
+              <Send size={24} style={{ color: 'var(--color-vintage-teal-500)' }} />
             </div>
-            <h3 className="text-stone-600 font-serif text-xl mb-2">Connecting to Telegram...</h3>
-            <p className="text-stone-500 text-sm mb-4">Fetching the latest updates</p>
+            <h3 className="font-serif text-xl mb-2" style={{ color: 'var(--color-vintage-teal-700)' }}>Connecting to Telegram...</h3>
+            <p className="text-sm mb-4" style={{ color: 'var(--color-vintage-teal-600)' }}>Fetching the latest updates</p>
             <a
               href={`https://t.me/${CHANNEL_NAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-stone-600 text-sm hover:text-stone-900 transition-colors font-medium"
+              className="inline-flex items-center text-sm transition-colors font-medium hover:opacity-80"
+              style={{ color: 'var(--color-vintage-teal-700)' }}
             >
               View Channel <ExternalLink size={14} className="ml-1.5" />
             </a>
@@ -33,39 +40,54 @@ export default async function TelegramHero() {
   return (
     <section className="mb-20 space-y-6 animate-in fade-in duration-700">
 
-      {/* Minimal Header */}
+      {/* Vintage Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-stone-100 to-stone-200 shadow-sm">
-            <Send size={16} className="text-stone-600" />
+          <div className="flex items-center justify-center w-12 h-12 rounded-full" style={{
+            background: 'linear-gradient(135deg, var(--color-vintage-teal-400) 0%, var(--color-vintage-teal-500) 100%)',
+            boxShadow: '0 2px 8px rgba(95, 158, 160, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+            border: '2px solid var(--color-vintage-teal-600)'
+          }}>
+            <Send size={18} style={{ color: 'var(--color-cream-50)' }} />
           </div>
           <div>
-            <h2 className="font-serif text-2xl font-bold text-stone-900">
+            <h2 className="font-serif text-2xl font-bold" style={{ color: 'var(--color-vintage-teal-700)' }}>
               Latest Updates
             </h2>
-            <p className="text-xs text-stone-500 mt-0.5">From The Observer Channel</p>
+            <p className="text-xs mt-0.5" style={{ color: 'var(--color-cream-700)' }}>From The Observer Channel</p>
           </div>
         </div>
         <a
             href={`https://t.me/${CHANNEL_NAME}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 text-sm font-medium transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:-translate-y-0.5"
+            style={{
+              backgroundColor: 'var(--color-cream-100)',
+              color: 'var(--color-vintage-teal-700)',
+              border: '2px solid var(--color-cream-300)',
+              boxShadow: '0 2px 6px rgba(95, 158, 160, 0.15)'
+            }}
         >
             <ExternalLink size={14} />
             <span>View Channel</span>
         </a>
       </div>
 
-      {/* HERO POST - Clean design */}
+      {/* HERO POST - Vintage design */}
       <a
         href={heroPost.link}
         target="_blank"
         rel="noreferrer"
-        className="group block bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-stone-300 hover:shadow-xl transition-all duration-300"
+        className="group block rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        style={{
+          backgroundColor: 'var(--color-cream-50)',
+          border: '3px solid var(--color-vintage-teal-500)',
+          boxShadow: '0 4px 12px rgba(95, 158, 160, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
+        }}
       >
         {heroPost.image && (
-          <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-stone-100 overflow-hidden">
+          <div className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden" style={{ backgroundColor: 'var(--color-cream-200)' }}>
             <img
               src={heroPost.image}
               alt={heroPost.title}
@@ -74,10 +96,13 @@ export default async function TelegramHero() {
             {/* Stronger gradient for better text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-            {/* Badge */}
-            <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-              <Sparkles size={12} className="text-amber-500" />
-              <span className="text-xs font-bold text-stone-900">Latest</span>
+            {/* Vintage Badge */}
+            <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm" style={{
+              backgroundColor: 'var(--color-cream-50)',
+              border: '2px solid var(--color-vintage-teal-400)'
+            }}>
+              <Sparkles size={12} style={{ color: 'var(--color-vintage-teal-600)' }} />
+              <span className="text-xs font-bold" style={{ color: 'var(--color-vintage-teal-700)' }}>Latest</span>
             </div>
 
             {/* Title Overlay on Image */}
@@ -97,23 +122,23 @@ export default async function TelegramHero() {
         <div className="p-6 md:p-8">
           {!heroPost.image && (
             <>
-              <div className="flex items-center gap-2 text-stone-400 text-xs mb-3">
+              <div className="flex items-center gap-2 text-xs mb-3" style={{ color: 'var(--color-cream-600)' }}>
                 <Calendar size={12} />
                 <span>{heroPost.date}</span>
-                <span className="text-stone-300">•</span>
+                <span style={{ color: 'var(--color-cream-400)' }}>•</span>
                 <div className="flex items-center gap-1.5">
                   <Send size={10} />
                   <span>Text Update</span>
                 </div>
               </div>
-              <h3 className="font-serif text-2xl md:text-3xl font-bold text-stone-900 mb-4 leading-tight">
+              <h3 className="font-serif text-2xl md:text-3xl font-bold mb-4 leading-tight" style={{ color: 'var(--color-vintage-teal-800)' }}>
                 {heroPost.title.substring(0, 100)}
               </h3>
             </>
           )}
 
           {heroPost.content.length > 0 && (
-            <div className="text-stone-600 leading-relaxed mb-6 line-clamp-4">
+            <div className="leading-relaxed mb-6 line-clamp-4" style={{ color: 'var(--color-vintage-teal-700)' }}>
               <p>
                 {(() => {
                   const fullText = heroPost.content.join(' ');
@@ -127,14 +152,14 @@ export default async function TelegramHero() {
             </div>
           )}
 
-          <div className="inline-flex items-center gap-2 text-stone-900 font-semibold group-hover:text-stone-600 transition-colors">
+          <div className="inline-flex items-center gap-2 font-semibold group-hover:opacity-80 transition-opacity" style={{ color: 'var(--color-vintage-teal-700)' }}>
             <span>Read more</span>
             <ExternalLink size={16} className="group-hover:translate-x-0.5 transition-transform" />
           </div>
         </div>
       </a>
 
-      {/* SECONDARY POSTS - Improved Cards */}
+      {/* SECONDARY POSTS - Vintage Cards */}
       {secondaryPosts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             {secondaryPosts.map((post) => (
@@ -143,11 +168,16 @@ export default async function TelegramHero() {
                     href={post.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="group block bg-white rounded-xl overflow-hidden border border-stone-200 hover:border-stone-300 hover:shadow-lg transition-all duration-300"
+                    className="group block rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    style={{
+                      backgroundColor: 'var(--color-cream-50)',
+                      border: '2px solid var(--color-vintage-teal-400)',
+                      boxShadow: '0 2px 8px rgba(95, 158, 160, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
+                    }}
                 >
                     {/* Image if available */}
                     {post.image && (
-                      <div className="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
+                      <div className="relative w-full aspect-[16/10] overflow-hidden" style={{ backgroundColor: 'var(--color-cream-200)' }}>
                         <img
                           src={post.image}
                           alt={post.title}
@@ -166,12 +196,12 @@ export default async function TelegramHero() {
 
                     {/* Content */}
                     <div className="p-4 md:p-5">
-                      <div className="flex items-center gap-2 text-stone-400 text-xs mb-2">
+                      <div className="flex items-center gap-2 text-xs mb-2" style={{ color: 'var(--color-cream-600)' }}>
                         <Calendar size={10} />
                         <span>{post.date}</span>
                         {!post.image && (
                           <>
-                            <span className="text-stone-300">•</span>
+                            <span style={{ color: 'var(--color-cream-400)' }}>•</span>
                             <Send size={8} />
                             <span>Text</span>
                           </>
@@ -179,12 +209,12 @@ export default async function TelegramHero() {
                       </div>
 
                       {!post.image && (
-                        <h4 className="font-serif text-lg font-bold text-stone-900 mb-3 line-clamp-2 leading-snug group-hover:text-stone-700 transition-colors">
+                        <h4 className="font-serif text-lg font-bold mb-3 line-clamp-2 leading-snug group-hover:opacity-80 transition-opacity" style={{ color: 'var(--color-vintage-teal-800)' }}>
                           {post.title.substring(0, 80)}
                         </h4>
                       )}
 
-                      <p className="text-stone-600 text-sm leading-relaxed line-clamp-3 mb-3">
+                      <p className="text-sm leading-relaxed line-clamp-3 mb-3" style={{ color: 'var(--color-vintage-teal-700)' }}>
                           {(() => {
                             const fullText = post.content.join(' ');
                             const titleText = post.title.substring(0, 80);
@@ -195,7 +225,7 @@ export default async function TelegramHero() {
                           })()}
                       </p>
 
-                      <div className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-500 group-hover:text-stone-900 transition-colors">
+                      <div className="inline-flex items-center gap-1.5 text-xs font-medium group-hover:opacity-80 transition-opacity" style={{ color: 'var(--color-vintage-teal-600)' }}>
                         <span>Read more</span>
                         <ExternalLink size={12} className="group-hover:translate-x-0.5 transition-transform" />
                       </div>

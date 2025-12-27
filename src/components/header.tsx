@@ -57,24 +57,24 @@ export default function Header() {
             className="group transition-all duration-300 flex-shrink-0"
           >
             {/* Sign-like container */}
-            <div className="inline-block px-5 py-2.5 rounded-lg relative" style={{
+            <div className="inline-block px-4 py-2 rounded-lg relative" style={{
               backgroundColor: 'var(--color-cream-100)',
-              border: '3px solid var(--color-cream-400)',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.5)',
+              border: '2px solid var(--color-cream-400)',
+              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.4)',
               transform: 'translateY(0)',
               transition: 'transform 0.2s ease'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              <div className="font-serif text-xl lg:text-2xl font-bold tracking-tight whitespace-nowrap" style={{
+              <div className="font-serif text-lg lg:text-xl font-bold tracking-tight whitespace-nowrap" style={{
                 color: 'var(--color-vintage-teal-700)',
-                textShadow: '1px 1px 0 rgba(255, 255, 255, 0.5)'
+                textShadow: '1px 1px 0 rgba(255, 255, 255, 0.4)'
               }}>
                 Zeina's Corner
               </div>
-              <div className="text-[0.7rem] italic font-light tracking-wide mt-1 text-center whitespace-nowrap" style={{
-                color: 'var(--color-cream-800)'
+              <div className="text-[0.65rem] italic font-light tracking-wide mt-0.5 text-center whitespace-nowrap opacity-75" style={{
+                color: 'var(--color-cream-700)'
               }}>
                 Mother, Artist, Professor, Entrepreneur
               </div>

@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import TelegramHero from "@/components/telegram-hero";
 import { BookOpen, FileText, GraduationCap, Sprout } from "lucide-react";
 
-export const revalidate = 60;
+export const revalidate = 30; // Revalidate every 30 seconds for faster updates
 
 export default async function Home() {
   const posts = await prisma.post.findMany({
@@ -39,8 +39,80 @@ export default async function Home() {
     }
   ];
 
+  // Get latest 5 posts for sidebar
+  const latestPosts = posts.slice(0, 5);
+
   return (
-    <div className="space-y-16">
+    <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      {/* Latest Stories Sidebar - Mobile: top, Desktop: left */}
+      {latestPosts.length > 0 && (
+        <aside className="w-full lg:w-80 flex-shrink-0 order-1 lg:order-1">
+          <div className="sticky top-24 rounded-xl p-6 shadow-lg" style={{
+            backgroundColor: 'var(--color-cream-50)',
+            border: '3px solid var(--color-vintage-teal-500)',
+            boxShadow: '0 4px 12px rgba(95, 158, 160, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
+          }}>
+            {/* Decorative top border */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-vintage-teal-400))' }}></div>
+              <div className="flex gap-1.5">
+                <div className="w-1 h-1 rounded-full" style={{ backgroundColor: 'var(--color-vintage-teal-500)' }}></div>
+                <div className="w-1 h-1 rounded-full" style={{ backgroundColor: 'var(--color-vintage-teal-400)' }}></div>
+              </div>
+              <div className="w-8 h-px" style={{ background: 'linear-gradient(90deg, var(--color-vintage-teal-400), transparent)' }}></div>
+            </div>
+
+            <h3 className="font-serif text-xl font-bold mb-6 text-center" style={{
+              color: 'var(--color-vintage-teal-700)',
+              textShadow: '1px 1px 0 rgba(255, 255, 255, 0.5)'
+            }}>
+              Latest Stories
+            </h3>
+
+            <div className="space-y-4">
+              {latestPosts.map((post, index) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="group block pb-4 transition-all duration-300"
+                  style={{
+                    borderBottom: index < latestPosts.length - 1 ? '1px solid var(--color-cream-300)' : 'none'
+                  }}
+                >
+                  {post.imageUrl && (
+                    <div className="relative h-32 w-full mb-3 rounded-lg overflow-hidden shadow-sm" style={{ backgroundColor: 'var(--color-cream-200)' }}>
+                      <img
+                        src={post.imageUrl}
+                        alt={post.title}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
+                  <h4 className="font-serif text-sm font-bold mb-1 line-clamp-2 leading-tight group-hover:opacity-80 transition-opacity" style={{ color: 'var(--color-vintage-teal-800)' }}>
+                    {post.title}
+                  </h4>
+                  <div className="text-xs mb-2 uppercase tracking-wider font-semibold" style={{ color: 'var(--color-cream-600)' }}>
+                    {format(post.createdAt, "MMM d, yyyy")}
+                  </div>
+                  <p className="text-xs leading-relaxed line-clamp-2" style={{ color: 'var(--color-vintage-teal-700)' }}>
+                    {post.content.replace(/<[^>]+>/g, '').substring(0, 80)}...
+                  </p>
+                </Link>
+              ))}
+            </div>
+
+            {/* Decorative bottom border */}
+            <div className="flex items-center gap-3 mt-6">
+              <div className="w-8 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-vintage-teal-400))' }}></div>
+              <div className="w-2 h-2 rotate-45 border" style={{ borderColor: 'var(--color-vintage-teal-500)' }}></div>
+              <div className="w-8 h-px" style={{ background: 'linear-gradient(90deg, var(--color-vintage-teal-400), transparent)' }}></div>
+            </div>
+          </div>
+        </aside>
+      )}
+
+      {/* Main Content */}
+      <div className="flex-1 min-w-0 order-2 lg:order-2 space-y-16">
       {/* Hero Welcome Section */}
       <section className="relative text-center py-12 px-8 rounded-2xl overflow-hidden" style={{
         background: 'linear-gradient(135deg, var(--color-vintage-teal-100) 0%, var(--color-cream-200) 100%)',
@@ -255,6 +327,9 @@ export default async function Home() {
           </div>
         )}
       </section>
+      </div>
+      {/* End Main Content */}
     </div>
+    {/* End Flex Container */}
   );
 }
