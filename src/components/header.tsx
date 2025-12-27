@@ -9,28 +9,30 @@ import AuthModal from './auth-modal';
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   const pathname = usePathname();
   const isActive = pathname === href;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Link
       href={href}
-      className="group relative py-1 transition-colors"
+      className="group relative py-2 px-1 transition-all duration-300 ease-out"
       style={{
-        color: isActive ? 'var(--color-vintage-teal-600)' : 'var(--color-vintage-teal-500)'
+        color: isActive ? 'var(--color-vintage-teal-600)' : isHovered ? 'var(--color-vintage-teal-700)' : 'var(--color-vintage-teal-500)',
+        transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
+        textShadow: isHovered ? '0 1px 2px rgba(95, 158, 160, 0.2)' : 'none'
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {children}
       <span
-        className="absolute left-0 bottom-0 h-0.5 transition-all duration-300 ease-in-out"
+        className="absolute left-0 bottom-0 transition-all duration-300 ease-out"
         style={{
+          height: isHovered ? '3px' : '2px',
           backgroundColor: 'var(--color-vintage-teal-600)',
-          width: isActive ? '100%' : '0'
+          width: isActive ? '100%' : isHovered ? '100%' : '0',
+          boxShadow: isHovered ? '0 2px 4px rgba(95, 158, 160, 0.3)' : 'none'
         }}
       />
-      <style jsx>{`
-        .group:hover span {
-          width: 100%;
-        }
-      `}</style>
     </Link>
   );
 };
@@ -60,7 +62,7 @@ export default function Header() {
           </Link>
           
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-6 font-medium text-xs tracking-wide uppercase">
+          <nav className="hidden lg:flex items-center space-x-7 font-medium text-xs tracking-wide uppercase">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/books">Books</NavLink>
             <NavLink href="/papers">Papers</NavLink>
@@ -70,16 +72,26 @@ export default function Header() {
             <NavLink href="/contact">Contact</NavLink>
             <button
               onClick={() => setAuthOpen(true)}
-              className="flex items-center space-x-2 px-3 py-2 rounded-full transition-transform active:scale-95 ml-2"
+              className="flex items-center gap-2.5 px-5 py-2.5 rounded-full transition-all duration-300 ease-out active:scale-95 ml-4 hover:-translate-y-0.5"
               style={{
                 backgroundColor: 'var(--color-vintage-teal-600)',
-                color: 'var(--color-cream-50)'
+                color: 'var(--color-cream-50)',
+                fontSize: '0.813rem',
+                fontWeight: '600',
+                letterSpacing: '0.025em',
+                boxShadow: '0 2px 8px rgba(95, 158, 160, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-700)'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-600)'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-700)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(95, 158, 160, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-600)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(95, 158, 160, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+              }}
             >
-                <UserCircle size={16} />
-                <span>Sign In</span>
+                <UserCircle size={18} strokeWidth={2.5} />
+                <span className="whitespace-nowrap">Sign In</span>
             </button>
           </nav>
 
