@@ -41,24 +41,25 @@ export default async function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Welcome Section */}
-      <section className="text-center py-8 px-4 rounded-lg" style={{
-        background: 'linear-gradient(135deg, var(--color-vintage-teal-50) 0%, var(--color-cream-100) 100%)',
-        border: '2px solid var(--color-vintage-teal-200)'
+      <section className="text-center py-10 px-6 rounded-xl" style={{
+        background: 'linear-gradient(135deg, var(--color-vintage-teal-100) 0%, var(--color-cream-200) 100%)',
+        border: '3px solid var(--color-vintage-teal-400)',
+        boxShadow: '0 4px 12px rgba(95, 158, 160, 0.15)'
       }}>
-        <h1 className="font-serif text-4xl md:text-5xl font-bold mb-3" style={{ color: 'var(--color-vintage-teal-800)' }}>
+        <h1 className="font-serif text-4xl md:text-5xl font-bold mb-3" style={{ color: 'var(--color-vintage-teal-700)' }}>
           Welcome to Zeina's Corner
         </h1>
-        <p className="text-lg md:text-xl italic font-light" style={{ color: 'var(--color-cream-700)' }}>
+        <p className="text-lg md:text-xl italic font-light" style={{ color: 'var(--color-cream-800)' }}>
           Professor, Artist, Mother, Entrepreneur
         </p>
-        <p className="mt-4 text-base max-w-2xl mx-auto" style={{ color: 'var(--color-vintage-teal-700)' }}>
+        <p className="mt-4 text-base max-w-2xl mx-auto" style={{ color: 'var(--color-vintage-teal-800)' }}>
           A cozy space where academia meets creativity, and professional pursuits blend with personal passions.
         </p>
       </section>
 
       {/* Four Featured Sections */}
       <section>
-        <h2 className="text-3xl font-serif font-bold mb-8 text-center" style={{ color: 'var(--color-vintage-teal-800)' }}>
+        <h2 className="text-3xl font-serif font-bold mb-8 text-center" style={{ color: 'var(--color-vintage-teal-700)' }}>
           Explore My World
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -66,23 +67,24 @@ export default async function Home() {
             <Link
               key={section.href}
               href={section.href}
-              className="group p-6 rounded-lg transition-all duration-300 hover:shadow-lg"
+              className="group p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
               style={{
-                backgroundColor: 'var(--color-cream-100)',
-                border: '2px solid var(--color-vintage-teal-200)'
+                backgroundColor: 'var(--color-cream-50)',
+                border: '2px solid var(--color-vintage-teal-300)',
+                boxShadow: '0 2px 6px rgba(95, 158, 160, 0.1)'
               }}
             >
               <div className="flex items-start space-x-4">
                 <div className="text-4xl">{section.icon}</div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-serif font-bold mb-2 group-hover:opacity-80 transition-opacity" style={{ color: 'var(--color-vintage-teal-700)' }}>
+                  <h3 className="text-xl font-serif font-bold mb-2 group-hover:opacity-80 transition-opacity" style={{ color: 'var(--color-vintage-teal-600)' }}>
                     {section.title}
                   </h3>
                   <p className="text-sm" style={{ color: 'var(--color-cream-800)' }}>
                     {section.description}
                   </p>
                 </div>
-                <span className="text-xl group-hover:translate-x-1 transition-transform" style={{ color: 'var(--color-vintage-teal-500)' }}>→</span>
+                <span className="text-xl group-hover:translate-x-1 transition-transform" style={{ color: 'var(--color-vintage-teal-400)' }}>→</span>
               </div>
             </Link>
           ))}
@@ -95,8 +97,8 @@ export default async function Home() {
       {/* Blog Section */}
       <section>
         <div className="flex items-center space-x-4 mb-8">
-          <h3 className="text-2xl font-serif font-bold" style={{ color: 'var(--color-vintage-teal-800)' }}>Latest Stories</h3>
-          <div className="h-px flex-grow" style={{ backgroundColor: 'var(--color-cream-300)' }}></div>
+          <h3 className="text-2xl font-serif font-bold" style={{ color: 'var(--color-vintage-teal-700)' }}>Latest Stories</h3>
+          <div className="h-px flex-grow" style={{ backgroundColor: 'var(--color-vintage-teal-300)' }}></div>
         </div>
 
         {posts.length === 0 ? (

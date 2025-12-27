@@ -27,7 +27,6 @@ export default function RootLayout({
           "font-sans antialiased flex flex-col min-h-screen"
         )}
         style={{
-          backgroundColor: 'var(--color-cream-50)',
           color: 'var(--color-vintage-teal-900)'
         }}
       >
@@ -39,16 +38,16 @@ export default function RootLayout({
 
         <footer className="w-full py-12 mt-auto" style={{
           backgroundColor: 'var(--color-cream-200)',
-          borderTop: '1px solid var(--color-cream-300)'
+          borderTop: '3px solid var(--color-vintage-teal-400)'
         }}>
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h3 className="font-serif text-xl font-bold mb-4" style={{ color: 'var(--color-vintage-teal-800)' }}>Zeina's Corner</h3>
+            <h3 className="font-serif text-xl font-bold mb-4" style={{ color: 'var(--color-vintage-teal-700)' }}>Zeina's Corner</h3>
             <div className="flex justify-center space-x-6 text-sm mb-8" style={{ color: 'var(--color-vintage-teal-600)' }}>
               <Link href="/" className="hover:opacity-80 transition-opacity">Home</Link>
               <Link href="/about" className="hover:opacity-80 transition-opacity">About</Link>
               <Link href="/contact" className="hover:opacity-80 transition-opacity">Contact</Link>
             </div>
-            <p className="text-xs" style={{ color: 'var(--color-cream-600)' }}>
+            <p className="text-xs" style={{ color: 'var(--color-cream-700)' }}>
               © {new Date().getFullYear()} Zeina's Corner. Made with love.
             </p>
           </div>

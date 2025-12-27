@@ -15,7 +15,7 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
       href={href}
       className="group relative py-1 transition-colors"
       style={{
-        color: isActive ? 'var(--color-vintage-teal-700)' : 'var(--color-vintage-teal-500)'
+        color: isActive ? 'var(--color-vintage-teal-600)' : 'var(--color-vintage-teal-500)'
       }}
     >
       {children}
@@ -42,18 +42,19 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300" style={{
-        backgroundColor: 'rgba(253, 252, 250, 0.9)',
-        borderBottom: '2px solid var(--color-vintage-teal-300)'
+        backgroundColor: 'rgba(245, 230, 211, 0.95)',
+        borderBottom: '3px solid var(--color-vintage-teal-400)',
+        boxShadow: '0 2px 8px rgba(95, 158, 160, 0.1)'
       }}>
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link
             href="/"
             className="hover:opacity-80 transition-opacity"
           >
-            <div className="font-serif text-2xl md:text-3xl font-bold tracking-tight" style={{ color: 'var(--color-vintage-teal-700)' }}>
+            <div className="font-serif text-2xl md:text-3xl font-bold tracking-tight" style={{ color: 'var(--color-vintage-teal-600)' }}>
               Zeina's Corner
             </div>
-            <div className="text-xs md:text-sm italic font-light tracking-wide mt-1" style={{ color: 'var(--color-cream-700)' }}>
+            <div className="text-xs md:text-sm italic font-light tracking-wide mt-1" style={{ color: 'var(--color-cream-800)' }}>
               Professor, Artist, Mother, Entrepreneur
             </div>
           </Link>

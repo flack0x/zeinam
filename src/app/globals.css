@@ -4,29 +4,29 @@
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
 
-  /* Vintage Teal Color Palette */
-  --color-vintage-teal-50: #f0f9f9;
-  --color-vintage-teal-100: #d6eff0;
-  --color-vintage-teal-200: #a8d5d8;
-  --color-vintage-teal-300: #7dbcc0;
+  /* Vintage Teal Color Palette - Rich and saturated like the illustration */
+  --color-vintage-teal-50: #e8f4f4;
+  --color-vintage-teal-100: #c7e6e8;
+  --color-vintage-teal-200: #9fd4d7;
+  --color-vintage-teal-300: #77c2c6;
   --color-vintage-teal-400: #5F9EA0;
-  --color-vintage-teal-500: #4a7c7e;
-  --color-vintage-teal-600: #3d6466;
-  --color-vintage-teal-700: #2f4d4e;
-  --color-vintage-teal-800: #213638;
-  --color-vintage-teal-900: #162224;
+  --color-vintage-teal-500: #4d888a;
+  --color-vintage-teal-600: #3f7274;
+  --color-vintage-teal-700: #325b5d;
+  --color-vintage-teal-800: #264546;
+  --color-vintage-teal-900: #1a3030;
 
-  /* Warm Cream Palette */
-  --color-cream-50: #fdfcfa;
-  --color-cream-100: #f9f6f0;
-  --color-cream-200: #f5ede0;
-  --color-cream-300: #f0e4d0;
-  --color-cream-400: #e8d5b7;
-  --color-cream-500: #d9c4a0;
-  --color-cream-600: #c4a87a;
-  --color-cream-700: #a88a5f;
-  --color-cream-800: #86684a;
-  --color-cream-900: #5d4935;
+  /* Warm Peachy Cream Palette - Like the illustration's warm background */
+  --color-cream-50: #f9f3ec;
+  --color-cream-100: #f5e6d3;
+  --color-cream-200: #ede0d4;
+  --color-cream-300: #e4d5c0;
+  --color-cream-400: #d9c5a8;
+  --color-cream-500: #cdb490;
+  --color-cream-600: #b89968;
+  --color-cream-700: #9c7f54;
+  --color-cream-800: #7d6543;
+  --color-cream-900: #5d4a32;
 
   /* Warm Accent Colors */
   --color-coral-300: #f4a4a4;
@@ -35,6 +35,21 @@
 }
 
 body {
-  background-color: var(--color-cream-50);
+  background-color: var(--color-cream-100);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(237, 224, 212, 0.03) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(237, 224, 212, 0.03) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(237, 224, 212, 0.03) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(237, 224, 212, 0.03) 3px
+    );
   color: var(--color-vintage-teal-900);
 }
