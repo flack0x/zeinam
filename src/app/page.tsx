@@ -119,6 +119,20 @@ export default async function Home() {
         border: '4px double var(--color-vintage-teal-500)',
         boxShadow: '0 8px 24px rgba(95, 158, 160, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.5)'
       }}>
+        {/* Pristine Shine Effect */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.4) 45%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.4) 55%, transparent 100%)',
+          opacity: 0.5,
+          mixBlendMode: 'overlay'
+        }}></div>
+        {/* Subtle edge highlights for premium feel */}
+        <div className="absolute top-0 left-0 right-0 h-px" style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%)'
+        }}></div>
+        <div className="absolute top-0 bottom-0 left-0 w-px" style={{
+          background: 'linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%)'
+        }}></div>
+
         {/* Ornate Corner Flourishes */}
         <div className="absolute top-2 left-2 w-12 h-12" style={{
           background: 'radial-gradient(circle at top left, var(--color-vintage-teal-400) 0%, transparent 70%)',
