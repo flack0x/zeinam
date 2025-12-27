@@ -37,19 +37,24 @@
 body {
   background-color: var(--color-cream-100);
   background-image:
+    /* Paper grain texture */
     repeating-linear-gradient(
       0deg,
-      rgba(237, 224, 212, 0.03) 0px,
+      rgba(237, 224, 212, 0.05) 0px,
       transparent 1px,
       transparent 2px,
-      rgba(237, 224, 212, 0.03) 3px
+      rgba(237, 224, 212, 0.05) 3px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(237, 224, 212, 0.03) 0px,
+      rgba(237, 224, 212, 0.05) 0px,
       transparent 1px,
       transparent 2px,
-      rgba(237, 224, 212, 0.03) 3px
-    );
+      rgba(237, 224, 212, 0.05) 3px
+    ),
+    /* Subtle noise pattern */
+    radial-gradient(circle at 20% 50%, rgba(217, 196, 144, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(217, 196, 144, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(217, 196, 144, 0.08) 0%, transparent 50%);
   color: var(--color-vintage-teal-900);
 }
