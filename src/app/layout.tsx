@@ -49,24 +49,13 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="w-full py-8 mt-auto" style={{
-          backgroundColor: 'var(--color-vintage-teal-500)',
-          borderTop: '4px solid var(--color-vintage-teal-700)',
-          boxShadow: '0 -4px 12px rgba(0, 0, 0, 0.15)'
+        <footer className="w-full py-10 mt-auto" style={{
+          backgroundColor: '#4d888a',
+          borderTop: '4px solid #325b5d',
+          boxShadow: '0 -4px 16px rgba(0, 0, 0, 0.2)'
         }}>
           <div className="max-w-7xl mx-auto px-6">
-            {/* Decorative top line */}
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-16 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-cream-300))' }}></div>
-              <div className="flex gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--color-cream-300)' }}></div>
-                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--color-cream-200)' }}></div>
-                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--color-cream-300)' }}></div>
-              </div>
-              <div className="w-16 h-px" style={{ background: 'linear-gradient(90deg, var(--color-cream-300), transparent)' }}></div>
-            </div>
-
-            <div className="text-center mb-6">
+            <div className="text-center mb-8">
               {/* Wooden Box/Plaque Logo */}
               <div className="relative inline-block px-6 py-3 rounded-sm mb-4" style={{
                 background: 'linear-gradient(180deg, #704214 0%, #8B5A2B 20%, #A0653A 50%, #8B5A2B 80%, #704214 100%)',
@@ -115,34 +104,44 @@ export default function RootLayout({
                 }}></div>
               </div>
 
-              {/* Navigation links */}
-              <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm mb-6" style={{ color: 'var(--color-cream-100)' }}>
-                <Link href="/" className="hover:opacity-80 transition-opacity font-medium">Home</Link>
-                <span style={{ color: 'var(--color-cream-300)' }}>•</span>
-                <Link href="/books" className="hover:opacity-80 transition-opacity font-medium">Books</Link>
-                <span style={{ color: 'var(--color-cream-300)' }}>•</span>
-                <Link href="/papers" className="hover:opacity-80 transition-opacity font-medium">Papers</Link>
-                <span style={{ color: 'var(--color-cream-300)' }}>•</span>
-                <Link href="/courses" className="hover:opacity-80 transition-opacity font-medium">Courses</Link>
-                <span style={{ color: 'var(--color-cream-300)' }}>•</span>
-                <Link href="/hobbies" className="hover:opacity-80 transition-opacity font-medium">Hobbies</Link>
-                <span style={{ color: 'var(--color-cream-300)' }}>•</span>
-                <Link href="/about" className="hover:opacity-80 transition-opacity font-medium">About</Link>
-                <span style={{ color: 'var(--color-cream-300)' }}>•</span>
-                <Link href="/contact" className="hover:opacity-80 transition-opacity font-medium">Contact</Link>
-              </nav>
+              {/* Navigation Grid - Professional Layout */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto">
+                <div>
+                  <h4 className="font-serif font-bold mb-3 text-sm uppercase tracking-wider" style={{ color: '#F5E6D3' }}>Explore</h4>
+                  <div className="space-y-2">
+                    <Link href="/" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>Home</Link>
+                    <Link href="/books" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>Books</Link>
+                    <Link href="/papers" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>Papers</Link>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold mb-3 text-sm uppercase tracking-wider" style={{ color: '#F5E6D3' }}>Learn</h4>
+                  <div className="space-y-2">
+                    <Link href="/courses" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>Courses</Link>
+                    <Link href="/hobbies" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>Hobbies</Link>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold mb-3 text-sm uppercase tracking-wider" style={{ color: '#F5E6D3' }}>Connect</h4>
+                  <div className="space-y-2">
+                    <Link href="/about" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>About</Link>
+                    <Link href="/contact" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>Contact</Link>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-serif font-bold mb-3 text-sm uppercase tracking-wider" style={{ color: '#F5E6D3' }}>Follow</h4>
+                  <div className="space-y-2">
+                    <a href="https://t.me/observer_5" target="_blank" rel="noopener noreferrer" className="block text-sm hover:translate-x-1 transition-transform" style={{ color: '#e4d5c0' }}>Telegram</a>
+                  </div>
+                </div>
+              </div>
 
-              {/* Copyright */}
-              <p className="text-xs" style={{ color: 'var(--color-cream-200)' }}>
-                © {new Date().getFullYear()} Zeina's Corner. Made with love.
-              </p>
-            </div>
-
-            {/* Decorative bottom line */}
-            <div className="flex items-center justify-center gap-3 mt-6">
-              <div className="w-16 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-cream-300))' }}></div>
-              <div className="w-2 h-2 rotate-45 border" style={{ borderColor: 'var(--color-cream-300)' }}></div>
-              <div className="w-16 h-px" style={{ background: 'linear-gradient(90deg, var(--color-cream-300), transparent)' }}></div>
+              {/* Copyright & Divider */}
+              <div className="pt-6 border-t" style={{ borderColor: '#325b5d' }}>
+                <p className="text-xs text-center" style={{ color: '#c7e6e8' }}>
+                  © {new Date().getFullYear()} Zeina's Corner. All rights reserved.
+                </p>
+              </div>
             </div>
           </div>
         </footer>
