@@ -57,47 +57,55 @@ export default function Header() {
             className="group transition-all duration-300 flex-shrink-0"
           >
             {/* Wooden Box/Plaque Sign */}
-            <div className="relative inline-block px-6 py-3 rounded" style={{
-              background: 'linear-gradient(135deg, #8B7355 0%, #A0826D 50%, #8B7355 100%)',
-              border: '3px solid #5D4E37',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.3)',
+            <div className="relative inline-block px-6 py-3 rounded-sm" style={{
+              background: 'linear-gradient(180deg, #704214 0%, #8B5A2B 20%, #A0653A 50%, #8B5A2B 80%, #704214 100%)',
+              border: '3px solid #4A2C0F',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4), inset 0 2px 1px rgba(255, 255, 255, 0.15), inset 0 -3px 5px rgba(0, 0, 0, 0.4)',
               transform: 'translateY(0)',
               transition: 'transform 0.2s ease'
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-1px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              {/* Wood grain texture overlay */}
-              <div className="absolute inset-0 rounded opacity-20 pointer-events-none" style={{
-                backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px)',
+              {/* Prominent wood grain texture */}
+              <div className="absolute inset-0 rounded-sm opacity-30 pointer-events-none" style={{
+                backgroundImage: `
+                  repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.15) 3px, rgba(0,0,0,0.15) 6px),
+                  repeating-linear-gradient(90deg, rgba(139, 90, 43, 0.3) 0px, transparent 1px, transparent 3px, rgba(139, 90, 43, 0.3) 4px)
+                `,
                 mixBlendMode: 'multiply'
               }}></div>
 
-              {/* Carved/engraved text effect */}
+              {/* Additional wood knots/details */}
+              <div className="absolute top-2 right-8 w-3 h-2 rounded-full opacity-20" style={{
+                background: 'radial-gradient(ellipse, #3D1F0A 0%, transparent 70%)'
+              }}></div>
+
+              {/* Deep carved/engraved text */}
               <div className="relative font-serif text-xl lg:text-2xl font-bold tracking-tight whitespace-nowrap" style={{
-                color: '#F5E6D3',
-                textShadow: '0 2px 3px rgba(0, 0, 0, 0.5), 0 -1px 1px rgba(255, 255, 255, 0.3)',
-                letterSpacing: '0.02em'
+                color: '#F4E4C1',
+                textShadow: '0 3px 5px rgba(0, 0, 0, 0.7), 0 -1px 1px rgba(255, 255, 255, 0.25), 1px 0 2px rgba(0, 0, 0, 0.5)',
+                letterSpacing: '0.03em'
               }}>
                 Zeina's Corner
               </div>
 
-              {/* Decorative corner brass tacks */}
-              <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full" style={{
-                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              {/* Large brass corner nails */}
+              <div className="absolute top-1.5 left-1.5 w-2 h-2 rounded-full" style={{
+                background: 'radial-gradient(circle at 30% 30%, #FFD700 0%, #DAA520 50%, #8B6914 100%)',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
               }}></div>
-              <div className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full" style={{
-                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              <div className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full" style={{
+                background: 'radial-gradient(circle at 30% 30%, #FFD700 0%, #DAA520 50%, #8B6914 100%)',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
               }}></div>
-              <div className="absolute bottom-1 left-1 w-1.5 h-1.5 rounded-full" style={{
-                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              <div className="absolute bottom-1.5 left-1.5 w-2 h-2 rounded-full" style={{
+                background: 'radial-gradient(circle at 30% 30%, #FFD700 0%, #DAA520 50%, #8B6914 100%)',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
               }}></div>
-              <div className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full" style={{
-                background: 'radial-gradient(circle, #D4AF37 0%, #8B7500 100%)',
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.4)'
+              <div className="absolute bottom-1.5 right-1.5 w-2 h-2 rounded-full" style={{
+                background: 'radial-gradient(circle at 30% 30%, #FFD700 0%, #DAA520 50%, #8B6914 100%)',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
               }}></div>
             </div>
           </Link>
