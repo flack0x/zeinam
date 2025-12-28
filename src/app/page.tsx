@@ -2,42 +2,21 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { format } from "date-fns";
 import TelegramHero from "@/components/telegram-hero";
-import { BookOpen, FileText, GraduationCap, Sprout } from "lucide-react";
+import InteractiveStorefront from "@/components/interactive-storefront";
 
 export const revalidate = 30; // Revalidate every 30 seconds for faster updates
 
 export default async function Home() {
-  const posts = await prisma.post.findMany({
-    where: { published: true },
-    orderBy: { createdAt: "desc" },
-  });
-
-  const sections = [
-    {
-      title: "Books",
-      href: "/books",
-      Icon: BookOpen,
-      description: "Explore my published works and literary contributions"
-    },
-    {
-      title: "Conferences & Papers",
-      href: "/papers",
-      Icon: FileText,
-      description: "Academic research, publications, and conference presentations"
-    },
-    {
-      title: "Courses I Teach",
-      href: "/courses",
-      Icon: GraduationCap,
-      description: "Educational offerings and teaching portfolio"
-    },
-    {
-      title: "Home Economics & Hobbies",
-      href: "/hobbies",
-      Icon: Sprout,
-      description: "Personal interests, lifestyle, and creative pursuits"
-    }
-  ];
+  let posts: any[] = [];
+  try {
+    posts = await prisma.post.findMany({
+      where: { published: true },
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (error) {
+    // Database not available, continue with empty posts
+    console.log("Database connection failed, showing page without posts");
+  }
 
   // Get latest 5 posts for sidebar
   const latestPosts = posts.slice(0, 5);
@@ -191,9 +170,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Four Featured Sections */}
+      {/* Explore My World - Interactive Storefront */}
       <section>
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           {/* Decorative Top Line */}
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-16 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--color-vintage-teal-400))' }}></div>
@@ -223,74 +202,9 @@ export default async function Home() {
             <div className="w-16 h-px" style={{ background: 'linear-gradient(90deg, var(--color-vintage-teal-400), transparent)' }}></div>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {sections.map((section) => {
-            const IconComponent = section.Icon;
-            return (
-              <Link
-                key={section.href}
-                href={section.href}
-                className="group relative overflow-hidden rounded-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
-                style={{
-                  backgroundColor: 'var(--color-cream-50)',
-                  border: '3px solid var(--color-vintage-teal-500)',
-                  boxShadow: '0 4px 12px rgba(95, 158, 160, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)'
-                }}
-              >
-                {/* Striped Awning Effect */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-8"
-                  style={{
-                    background: 'repeating-linear-gradient(90deg, var(--color-vintage-teal-500) 0px, var(--color-vintage-teal-500) 20px, var(--color-cream-50) 20px, var(--color-cream-50) 40px)',
-                    borderBottom: '2px solid var(--color-vintage-teal-600)'
-                  }}
-                />
 
-                {/* Ornate Corner Decorations */}
-                <div className="absolute top-8 left-0 w-4 h-4 border-l-2 border-t-2 rounded-tl-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
-                <div className="absolute top-8 right-0 w-4 h-4 border-r-2 border-t-2 rounded-tr-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
-                <div className="absolute bottom-2 left-0 w-4 h-4 border-l-2 border-b-2 rounded-bl-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
-                <div className="absolute bottom-2 right-0 w-4 h-4 border-r-2 border-b-2 rounded-br-sm" style={{ borderColor: 'var(--color-vintage-teal-400)' }}></div>
-
-                <div className="p-6 pt-12 pb-8 flex items-start space-x-4">
-                  {/* Vintage Icon Circle */}
-                  <div
-                    className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
-                    style={{
-                      backgroundColor: 'var(--color-vintage-teal-500)',
-                      border: '3px solid var(--color-vintage-teal-600)',
-                      boxShadow: '0 2px 8px rgba(95, 158, 160, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.1)'
-                    }}
-                  >
-                    <IconComponent size={32} style={{ color: 'var(--color-cream-50)', strokeWidth: 2.5 }} />
-                  </div>
-
-                  <div className="flex-1">
-                    <h3
-                      className="text-xl font-serif font-bold mb-2 group-hover:opacity-80 transition-opacity"
-                      style={{
-                        color: 'var(--color-vintage-teal-700)',
-                        textShadow: '1px 1px 0 rgba(255, 255, 255, 0.5)'
-                      }}
-                    >
-                      {section.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed" style={{ color: 'var(--color-cream-800)' }}>
-                      {section.description}
-                    </p>
-                  </div>
-
-                  <span
-                    className="text-2xl group-hover:translate-x-1 transition-transform flex-shrink-0"
-                    style={{ color: 'var(--color-vintage-teal-500)' }}
-                  >
-                    →
-                  </span>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        {/* Interactive Storefront Image */}
+        <InteractiveStorefront />
       </section>
 
       {/* Telegram Section */}
@@ -344,6 +258,5 @@ export default async function Home() {
       </div>
       {/* End Main Content */}
     </div>
-    {/* End Flex Container */}
   );
 }
