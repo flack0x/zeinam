@@ -18,14 +18,16 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link
       href={href}
-      className="relative inline-block py-2 px-1.5 transition-all duration-300 ease-out flex-shrink-0"
+      className="relative inline-block py-2.5 px-2 transition-all duration-300 ease-out flex-shrink-0"
       style={{
-        color: isActive ? 'var(--color-cream-50)' : isHovered ? 'var(--color-cream-100)' : 'var(--color-cream-200)',
+        color: isActive ? 'var(--color-cream-50)' : isHovered ? 'var(--color-cream-50)' : 'var(--color-cream-100)',
         transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
-        textShadow: isHovered ? '0 2px 4px rgba(0, 0, 0, 0.3)' : '0 1px 2px rgba(0, 0, 0, 0.1)',
+        textShadow: isActive || isHovered ? '0 2px 8px rgba(0, 0, 0, 0.4)' : '0 1px 3px rgba(0, 0, 0, 0.2)',
         fontWeight: isActive ? '700' : '600',
         textDecoration: 'none',
-        whiteSpace: 'nowrap'
+        whiteSpace: 'nowrap',
+        fontSize: '0.9rem',
+        letterSpacing: '0.08em'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -34,10 +36,10 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
       <span
         className="absolute left-0 bottom-0 transition-all duration-300 ease-out pointer-events-none"
         style={{
-          height: isHovered ? '3px' : '2px',
-          backgroundColor: 'var(--color-cream-100)',
+          height: isHovered || isActive ? '3px' : '2px',
+          backgroundColor: 'var(--color-cream-50)',
           width: isActive ? '100%' : isHovered ? '100%' : '0',
-          boxShadow: isHovered ? '0 2px 4px rgba(255, 255, 255, 0.5)' : 'none'
+          boxShadow: isHovered || isActive ? '0 2px 6px rgba(255, 255, 255, 0.4)' : 'none'
         }}
       />
     </Link>
@@ -55,7 +57,7 @@ export default function Header({ isAuthenticated = false }: HeaderProps) {
         borderBottom: '4px solid var(--color-vintage-teal-700)',
         boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
       }}>
-        <div className="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 py-4 flex items-center justify-between gap-6">
           <Link
             href="/"
             className="group transition-all duration-300 flex-shrink-0"
@@ -115,7 +117,7 @@ export default function Header({ isAuthenticated = false }: HeaderProps) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-5 font-medium text-xs tracking-wide uppercase flex-shrink-0">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 font-semibold text-sm tracking-wider uppercase flex-shrink-0">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/books">Books</NavLink>
             <NavLink href="/papers">Papers</NavLink>
@@ -126,60 +128,60 @@ export default function Header({ isAuthenticated = false }: HeaderProps) {
             {isAuthenticated ? (
               <Link
                 href="/admin"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-2 flex-shrink-0"
+                className="flex items-center gap-2.5 px-5 py-2.5 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-4 flex-shrink-0"
                 style={{
                   backgroundColor: 'var(--color-vintage-teal-700)',
-                  color: 'var(--color-cream-100)',
-                  fontSize: '0.813rem',
+                  color: 'var(--color-cream-50)',
+                  fontSize: '0.9rem',
                   fontWeight: '700',
-                  letterSpacing: '0.025em',
+                  letterSpacing: '0.05em',
                   border: '2px solid var(--color-vintage-teal-800)',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 3px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
                   transform: 'translateY(0)',
                   transition: 'all 0.3s ease-out'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-600)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-700)';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <LayoutDashboard size={16} strokeWidth={2.5} />
-                <span className="whitespace-nowrap">Dashboard</span>
+                <LayoutDashboard size={18} strokeWidth={2.5} />
+                <span className="whitespace-nowrap">DASHBOARD</span>
               </Link>
             ) : (
               <button
                 onClick={() => setAuthOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-2 flex-shrink-0"
+                className="flex items-center gap-2.5 px-5 py-2.5 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-4 flex-shrink-0"
                 style={{
-                  backgroundColor: 'var(--color-cream-100)',
+                  backgroundColor: 'var(--color-cream-50)',
                   color: 'var(--color-vintage-teal-700)',
-                  fontSize: '0.813rem',
+                  fontSize: '0.9rem',
                   fontWeight: '700',
-                  letterSpacing: '0.025em',
-                  border: '2px solid var(--color-cream-300)',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
+                  letterSpacing: '0.05em',
+                  border: '2px solid var(--color-cream-200)',
+                  boxShadow: '0 3px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
                   transform: 'translateY(0)',
                   transition: 'all 0.3s ease-out'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-cream-50)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-cream-100)';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
+                  e.currentTarget.style.backgroundColor = 'var(--color-cream-50)';
+                  e.currentTarget.style.boxShadow = '0 3px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <UserCircle size={16} strokeWidth={2.5} />
-                <span className="whitespace-nowrap">Sign In</span>
+                <UserCircle size={18} strokeWidth={2.5} />
+                <span className="whitespace-nowrap">SIGN IN</span>
               </button>
             )}
           </nav>
