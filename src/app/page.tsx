@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { format } from "date-fns";
-import TelegramHero from "@/components/telegram-hero";
 import InteractiveStorefront from "@/components/interactive-storefront";
 
 export const revalidate = 30; // Revalidate every 30 seconds for faster updates
@@ -206,9 +205,6 @@ export default async function Home() {
         {/* Interactive Storefront Image */}
         <InteractiveStorefront />
       </section>
-
-      {/* Telegram Section */}
-      <TelegramHero />
 
       {/* Blog Section */}
       <section>
