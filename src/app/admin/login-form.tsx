@@ -4,7 +4,7 @@ import { useActionState } from 'react'
 import { login } from './actions'
 
 export default function LoginForm() {
-  const [state, action, isPending] = useActionState(login, { success: false })
+  const [state, action, isPending] = useActionState(login, { success: false, error: '' })
 
   return (
     <form action={action} className="space-y-4">
