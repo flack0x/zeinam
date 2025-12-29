@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <!-- Background with vintage teal -->
+  <rect width="180" height="180" rx="20" fill="#4d888a"/>
+
+  <!-- Inner decorative border -->
+  <rect x="8" y="8" width="164" height="164" rx="12" fill="none" stroke="#325b5d" stroke-width="3"/>
+  <rect x="14" y="14" width="152" height="152" rx="8" fill="none" stroke="#f5e6d3" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Stylized Z letter with serif styling -->
+  <text x="90" y="125" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="bold" fill="#f5e6d3" text-anchor="middle">Z</text>
+
+  <!-- Small decorative diamond at bottom -->
+  <rect x="82" y="145" width="16" height="16" fill="#f5e6d3" transform="rotate(45 90 153)" opacity="0.6"/>
+
+  <!-- Corner accents -->
+  <path d="M20 32 L20 20 L32 20" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.5"/>
+  <path d="M148 20 L160 20 L160 32" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.5"/>
+  <path d="M20 148 L20 160 L32 160" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.5"/>
+  <path d="M148 160 L160 160 L160 148" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.5"/>
+</svg>
