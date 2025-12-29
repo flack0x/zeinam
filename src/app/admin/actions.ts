@@ -13,7 +13,8 @@ export async function login(prevState: any, formData: FormData) {
   if (password === validPassword) {
     const cookieStore = await cookies()
     cookieStore.set('auth', 'true', { httpOnly: true, path: '/' })
-    return { success: true }
+    revalidatePath('/admin')
+    redirect('/admin')
   }
   return { success: false, error: 'Incorrect password' }
 }
