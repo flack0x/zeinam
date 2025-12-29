@@ -3,19 +3,10 @@ import LoginForm from './login-form'
 import CreatePostForm from './create-post-form'
 import { logout } from './actions'
 import { prisma } from '@/lib/prisma'
-import { promises as fs } from 'fs'
-import path from 'path'
 import Link from 'next/link'
-import { FileText, Send, Clock, PenSquare, LogOut, RefreshCw, Eye, EyeOff } from 'lucide-react'
-
-interface TelegramCache {
-  updated: string
-  channel: string
-  posts: { id: string; title: string; date: string }[]
-}
+import { FileText, Clock, PenSquare, LogOut, Eye, EyeOff } from 'lucide-react'
 
 async function getDashboardData() {
-  // Get blog posts stats
   const [totalPosts, publishedPosts, draftPosts, recentPosts] = await Promise.all([
     prisma.post.count(),
     prisma.post.count({ where: { published: true } }),
@@ -27,22 +18,11 @@ async function getDashboardData() {
     })
   ])
 
-  // Get telegram cache info
-  let telegramData: TelegramCache | null = null
-  try {
-    const cacheFile = path.join(process.cwd(), 'public', 'telegram-posts.json')
-    const content = await fs.readFile(cacheFile, 'utf-8')
-    telegramData = JSON.parse(content)
-  } catch {
-    telegramData = null
-  }
-
   return {
     totalPosts,
     publishedPosts,
     draftPosts,
-    recentPosts,
-    telegramData
+    recentPosts
   }
 }
 
@@ -59,11 +39,7 @@ export default async function AdminPage() {
     )
   }
 
-  const { totalPosts, publishedPosts, draftPosts, recentPosts, telegramData } = await getDashboardData()
-
-  const cacheAge = telegramData
-    ? Math.floor((Date.now() - new Date(telegramData.updated).getTime()) / (1000 * 60 * 60))
-    : null
+  const { totalPosts, publishedPosts, draftPosts, recentPosts } = await getDashboardData()
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -84,7 +60,7 @@ export default async function AdminPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         {/* Total Posts */}
         <div className="bg-white rounded-xl p-6 border border-stone-200 shadow-sm">
           <div className="flex items-center justify-between">
@@ -120,24 +96,6 @@ export default async function AdminPage() {
             </div>
             <div className="p-3 rounded-lg bg-amber-100">
               <EyeOff size={24} className="text-amber-600" />
-            </div>
-          </div>
-        </div>
-
-        {/* Telegram Posts */}
-        <div className="bg-white rounded-xl p-6 border border-stone-200 shadow-sm">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-stone-500 font-medium">Telegram Posts</p>
-              <p className="text-3xl font-bold mt-1 text-blue-600">{telegramData?.posts.length ?? 0}</p>
-              {cacheAge !== null && (
-                <p className="text-xs text-stone-400 mt-1">
-                  Updated {cacheAge}h ago
-                </p>
-              )}
-            </div>
-            <div className="p-3 rounded-lg bg-blue-100">
-              <Send size={24} className="text-blue-600" />
             </div>
           </div>
         </div>
@@ -214,39 +172,8 @@ export default async function AdminPage() {
                 <Eye size={18} />
                 View Site
               </Link>
-              <a
-                href={`https://t.me/${telegramData?.channel ?? 'observer_5'}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all hover:bg-stone-50 text-stone-600 w-full"
-              >
-                <Send size={18} />
-                Telegram Channel
-              </a>
             </div>
           </div>
-
-          {/* Telegram Status */}
-          {telegramData && (
-            <div className="bg-blue-50 rounded-xl border border-blue-200 p-4">
-              <div className="flex items-center gap-2 text-blue-800 mb-2">
-                <Send size={16} />
-                <span className="font-medium text-sm">Telegram Sync</span>
-              </div>
-              <p className="text-xs text-blue-600">
-                Last synced: {new Date(telegramData.updated).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </p>
-              <p className="text-xs text-blue-600 mt-1">
-                Channel: @{telegramData.channel}
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </div>
