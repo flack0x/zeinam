@@ -3,8 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, UserCircle } from 'lucide-react';
+import { Menu, UserCircle, LayoutDashboard } from 'lucide-react';
 import AuthModal from './auth-modal';
+
+interface HeaderProps {
+  isAuthenticated?: boolean;
+}
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -40,7 +44,7 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
   );
 };
 
-export default function Header() {
+export default function Header({ isAuthenticated = false }: HeaderProps) {
   const [isAuthOpen, setAuthOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -119,34 +123,65 @@ export default function Header() {
             <NavLink href="/hobbies">Hobbies</NavLink>
             <NavLink href="/about">About</NavLink>
             <NavLink href="/contact">Contact</NavLink>
-            <button
-              onClick={() => setAuthOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-2 flex-shrink-0"
-              style={{
-                backgroundColor: 'var(--color-cream-100)',
-                color: 'var(--color-vintage-teal-700)',
-                fontSize: '0.813rem',
-                fontWeight: '700',
-                letterSpacing: '0.025em',
-                border: '2px solid var(--color-cream-300)',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
-                transform: 'translateY(0)',
-                transition: 'all 0.3s ease-out'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-cream-50)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--color-cream-100)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
+            {isAuthenticated ? (
+              <Link
+                href="/admin"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-2 flex-shrink-0"
+                style={{
+                  backgroundColor: 'var(--color-vintage-teal-700)',
+                  color: 'var(--color-cream-100)',
+                  fontSize: '0.813rem',
+                  fontWeight: '700',
+                  letterSpacing: '0.025em',
+                  border: '2px solid var(--color-vintage-teal-800)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+                  transform: 'translateY(0)',
+                  transition: 'all 0.3s ease-out'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-600)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-vintage-teal-700)';
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <LayoutDashboard size={16} strokeWidth={2.5} />
+                <span className="whitespace-nowrap">Dashboard</span>
+              </Link>
+            ) : (
+              <button
+                onClick={() => setAuthOpen(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ease-out active:scale-95 ml-2 flex-shrink-0"
+                style={{
+                  backgroundColor: 'var(--color-cream-100)',
+                  color: 'var(--color-vintage-teal-700)',
+                  fontSize: '0.813rem',
+                  fontWeight: '700',
+                  letterSpacing: '0.025em',
+                  border: '2px solid var(--color-cream-300)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
+                  transform: 'translateY(0)',
+                  transition: 'all 0.3s ease-out'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-cream-50)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'var(--color-cream-100)';
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
                 <UserCircle size={16} strokeWidth={2.5} />
                 <span className="whitespace-nowrap">Sign In</span>
-            </button>
+              </button>
+            )}
           </nav>
 
           {/* Mobile Menu Button */}
@@ -177,14 +212,26 @@ export default function Header() {
                 <Link href="/hobbies" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Home Economics & Hobbies</Link>
                 <Link href="/about" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>About</Link>
                 <Link href="/contact" className="font-medium py-2" style={{ color: 'var(--color-vintage-teal-700)', borderBottom: '1px solid var(--color-cream-200)' }} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-                <button
+                {isAuthenticated ? (
+                  <Link
+                    href="/admin"
+                    className="text-left font-bold flex items-center space-x-2 py-2"
+                    style={{ color: 'var(--color-vintage-teal-800)' }}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <LayoutDashboard size={18} />
+                    <span>Dashboard</span>
+                  </Link>
+                ) : (
+                  <button
                     onClick={() => { setAuthOpen(true); setMobileMenuOpen(false); }}
                     className="text-left font-bold flex items-center space-x-2 py-2"
                     style={{ color: 'var(--color-vintage-teal-800)' }}
-                >
+                  >
                     <UserCircle size={18} />
                     <span>Sign In / Register</span>
-                </button>
+                  </button>
+                )}
             </div>
         )}
       </header>

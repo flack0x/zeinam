@@ -4,6 +4,7 @@ import "./globals.css";
 import clsx from "clsx";
 import Link from "next/link";
 import Header from "@/components/header";
+import { cookies } from "next/headers";
 
 // Elegant vintage serif for headings - has that classic storefront feel
 const cormorant = Cormorant_Garamond({
@@ -26,11 +27,14 @@ export const metadata: Metadata = {
   description: "A cozy place for stories and thoughts.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies()
+  const isAuthenticated = cookieStore.get('auth')?.value === 'true'
+
   return (
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
       <body
@@ -43,7 +47,7 @@ export default function RootLayout({
           color: 'var(--color-vintage-teal-900)'
         }}
       >
-        <Header />
+        <Header isAuthenticated={isAuthenticated} />
 
         <main className="flex-grow max-w-7xl mx-auto px-6 py-16 w-full animate-in fade-in duration-700">
           {children}
